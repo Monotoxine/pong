@@ -3,6 +3,7 @@ package com.pongenib.newpong;
 /**
  * Created by user on 02/11/2017.
  */
+
 import android.graphics.Canvas;
 
 public class GameLoopThread extends Thread {
@@ -27,38 +28,42 @@ public class GameLoopThread extends Thread {
 
     // démarrage du thread
     @Override
-    public void run()
-    {
+    public void run() {
 
         long startTime;
         long sleepTime;
 
 
-        while (running)
-        {
+        while (running) {
 
             startTime = System.currentTimeMillis();
 
 
-            synchronized (view.getHolder()) {view.update();}
+            synchronized (view.getHolder()) {
+                view.update();
+            }
 
 
             Canvas c = null;
             try {
                 c = view.getHolder().lockCanvas();
-                synchronized (view.getHolder()) {view.doDraw(c);}
-            }
-            finally
-            {
-                if (c != null) {view.getHolder().unlockCanvasAndPost(c);}
+                synchronized (view.getHolder()) {
+                    view.doDraw(c);
+                }
+            } finally {
+                if (c != null) {
+                    view.getHolder().unlockCanvasAndPost(c);
+                }
             }
 
 
-            sleepTime = SKIP_TICKS-(System.currentTimeMillis() - startTime);
+            sleepTime = SKIP_TICKS - (System.currentTimeMillis() - startTime);
             try {
-                if (sleepTime >= 0) {sleep(sleepTime);}
+                if (sleepTime >= 0) {
+                    sleep(sleepTime);
+                }
+            } catch (Exception e) {
             }
-            catch (Exception e) {}
         }
     }
 }

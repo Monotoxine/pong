@@ -1,23 +1,39 @@
 package com.pongenib.newpong;
 
-public abstract class Forme {
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.View;
+
+public abstract class Forme extends View {
     protected int x;
     protected int y;
     protected int hauteur;
     protected int largeur;
     protected double orientation;
 
-    public Forme(int x, int y, int hauteur, int largeur, double orientation) {
+    protected Pong pong;
+
+    public Forme(Context context, int x, int y, int largeur, int hauteur, double orientation) {
+        super(context);
         this.x = x;
         this.y = y;
-        this.hauteur = hauteur;
         this.largeur = largeur;
+        this.hauteur = hauteur;
         this.orientation = orientation;
     }
 
-    abstract void dessine();
+    abstract void dessine(Canvas canvas);
 
-    public int getX() {
+    public Pong getPong() {
+        return pong;
+    }
+
+    public void setPong(Pong pong) {
+        this.pong = pong;
+    }
+
+    public float getX() {
         return x;
     }
 
@@ -25,7 +41,7 @@ public abstract class Forme {
         this.x = x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
@@ -55,5 +71,11 @@ public abstract class Forme {
 
     public void setOrientation(double orientation) {
         this.orientation = orientation;
+    }
+
+    public Rect getRect() {
+        Rect rect = new Rect();
+        rect.set((int) getX(), (int) getY(), (int) getX() + getLargeur(), (int) getY() + getHauteur());
+        return rect;
     }
 }

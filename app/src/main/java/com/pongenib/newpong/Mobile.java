@@ -1,11 +1,12 @@
 package com.pongenib.newpong;
 
+import android.content.Context;
+
 public abstract class Mobile extends Forme {
     protected int vitesse;
-    Pong pong;
 
-    public Mobile(int x, int y, int hauteur, int largeur, double orientation) {
-        super(x, y, hauteur, largeur, orientation);
+    public Mobile(Context context, int x, int y, int hauteur, int largeur, double orientation) {
+        super(context, x, y, hauteur, largeur, orientation);
     }
 
     public int getVitesse() {
@@ -16,18 +17,10 @@ public abstract class Mobile extends Forme {
         this.vitesse = vitesse;
     }
 
-    public Pong getPong() {
-        return pong;
-    }
-
-    public void setPong(Pong pong) {
-        this.pong = pong;
-    }
-
     void deplace() {
         if (anime()) {
-            this.setX((int) Math.floor(this.x + vitesse * Math.cos(orientation)));
-            this.setY((int) Math.floor(this.y + vitesse * Math.sin(orientation)));
+            this.setX(Math.max(0, (int) Math.floor(this.x + vitesse * Math.cos(orientation))));
+            this.setY(Math.max(0, (int) Math.floor(this.y + vitesse * Math.sin(orientation))));
             this.pong.collision(this);
         }
     }

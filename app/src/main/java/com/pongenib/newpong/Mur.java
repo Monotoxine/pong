@@ -1,11 +1,16 @@
 package com.pongenib.newpong;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+
 public class Mur extends Forme {
 
-    private double coefficient;
+    private double coefficient = 1;
 
-    public Mur(int x, int y, int hauteur, int largeur) {
-        super(x, y, hauteur, largeur, 0);
+    public Mur(Context context, int x, int y, int largeur, int hauteur) {
+        super(context, x, y, largeur, hauteur, 0);
     }
 
     public double getCoefficient() {
@@ -17,9 +22,11 @@ public class Mur extends Forme {
     }
 
     @Override
-    void dessine() {
-        // TODO
-        //System.out.printf("Mur(%d, %d)[%d, %d]%n", x, y, hauteur, largeur);
+    void dessine(Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(Color.BLUE);
+        paint.setStyle(Paint.Style.FILL);
+        canvas.drawRect(getX(), getY(), getX() + getLargeur(), getY() + getHauteur(), paint);
     }
 
     @Override
