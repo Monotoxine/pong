@@ -1,3 +1,5 @@
+package com.pongenib.newpong;
+
 public class Triangle extends Mobile {
 
     public Triangle(int x, int y, int hauteur, int largeur, double orientation) {

@@ -1,3 +1,5 @@
+package com.pongenib.newpong;
+
 public abstract class Forme {
     protected int x;
     protected int y;

@@ -1,3 +1,5 @@
+package com.pongenib.newpong;
+
 public abstract class Mobile extends Forme {
     protected int vitesse;
     Pong pong;

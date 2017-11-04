@@ -1,3 +1,5 @@
+package com.pongenib.newpong;
+
 public class Mur extends Forme {
 
     private double coefficient;
