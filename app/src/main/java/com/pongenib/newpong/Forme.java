@@ -1,8 +1,3 @@
-package com.pongenib.newpong;
-
-
-import android.view.View;
-
 public abstract class Forme {
     protected int x;
     protected int y;
