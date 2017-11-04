@@ -14,7 +14,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private GameLoopThread gameLoopThread;
     private Balle balle;
-    private Triangle triangle;
+    private TriangleOld triangle;
     private Raquette raquette;
     // cr?ation de la surface de dessin
     public GameView(Context context) {
@@ -25,7 +25,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         // cr?ation d'un objet "balle" et autres
 
         balle = new Balle(this.getContext());
-        triangle=new Triangle(this.getContext());
+        triangle=new TriangleOld(this.getContext());
 
         balle.setTriangle(triangle); // Faire connaitre le triangle ? la balle
         triangle.setBalle(balle); // Faire connaitre la balle au triangle

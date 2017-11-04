@@ -9,8 +9,9 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
-public class Balle {
-    private BitmapDrawable img=null; // image de la balle
+public class TriangleOld {
+
+    private BitmapDrawable img=null;
     private int x,y;
     private int balleW, balleH;
     private int wEcran,hEcran;
@@ -22,16 +23,18 @@ public class Balle {
 
 
     private final Context mContext;
-    private TriangleOld triangle;
 
-    public Balle(final Context c)
+    private Balle balle;
+
+
+    public TriangleOld(final Context c)
     {
-        x=0; y=0;
-        mContext=c; // sauvegarde du contexte
+        x=0; y=0; // position de d?part
+        mContext=c;
     }
 
-    public void setTriangle(TriangleOld triangle) {
-        this.triangle = triangle;
+    public void setBalle(Balle balle) {
+        this.balle = balle;
     }
 
     public BitmapDrawable setImage(final Context c, final int ressource, final int w, final int h)
@@ -40,6 +43,7 @@ public class Balle {
         Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
         return new BitmapDrawable(c.getResources(), Bitmap.createScaledBitmap(bitmap, w, h, true));
     }
+
 
     public boolean isMoving() {
         return move;
@@ -54,6 +58,7 @@ public class Balle {
 
         wEcran=wScreen;
         hEcran=hScreen;
+
 
         balleW=wScreen/10;
         balleH=wScreen/10;
@@ -86,7 +91,9 @@ public class Balle {
 
     public void moveWithCollisionDetection()
     {
+
         if(!move) {return;}
+
 
         x+=speedX;
         y+=speedY;
@@ -98,16 +105,16 @@ public class Balle {
 
         if(x<0) {speedX=INCREMENT;}
 
-
         if(y<0) {speedY=INCREMENT;}
 
-        // Ajouter la collision avec le trianfle (en utilisant la position du triangle et sa dimension)
+        // Ajouter la collision avec la balle (en utilisant la position de la balle et sa dimension)
     }
 
-    // on dessine la balle, en x et y
+
     public void draw(Canvas canvas)
     {
         if(img==null) {return;}
         canvas.drawBitmap(img.getBitmap(), x, y, null);
     }
+
 }
